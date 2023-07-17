@@ -1,0 +1,15 @@
+{
+	"include": ["../UmbracoCMS/Models/**/*.cs"],
+	"exclude": [],
+	"output": "./src/types/backend.ts",
+	"camelCase": false,
+	"camelCaseEnums": false,
+	"camelCaseOptions": {
+		"pascalCase": false,
+		"preserveConsecutiveUppercase": false,
+		"locale": "en-US"
+	},
+	"numericEnums": false,
+	"omitFilePathComment": false,
+	"stringLiteralTypesInsteadOfEnums": false
+}
