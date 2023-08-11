@@ -1,0 +1,30 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.Page>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@inject IViteManifest Manifest;
+@{
+	Layout = null;
+}
+
+<environment exclude="Development">
+	<link rel="stylesheet" vite-href="~/src/scss/main.scss" />
+</environment>
+
+<div class="test">@Model.Title</div>
+
+<environment names="Development">
+	<script type="module" src="/_framework/aspnetcore-browser-refresh.js"></script>
+	@* for some reasons the middleware is slow. it's faster to use the vite dev server on Dev *@
+	<script type="module">
+		import RefreshRuntime from 'https://localhost:5173/@@react-refresh'
+		RefreshRuntime.injectIntoGlobalHook(window)
+		window.$RefreshReg$ = () => { }
+		window.$RefreshSig$ = () => (type) => type
+		window.__vite_plugin_react_preamble_installed__ = true
+	</script>
+	<script type="module" src="https://localhost:5173/@@vite/client"></script>
+	<script type="module" src="https://localhost:5173/src/main.ts"></script>
+</environment>
+<environment exclude="Development">
+	<script vite-src="~/src/main.ts"></script>
+</environment>

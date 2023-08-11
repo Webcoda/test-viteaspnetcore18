@@ -63,13 +63,6 @@ namespace UmbracoCMS
                 });
             }
 
-            // must be called before app.UseUmbraco
-            if (env.IsDevelopment())
-            {
-                // To test to run Umbraco, comment the line below
-                app.UseViteDevMiddleware();
-            }
-
             app.UseUmbraco()
                 .WithMiddleware(u =>
                 {
@@ -82,6 +75,13 @@ namespace UmbracoCMS
                     u.UseBackOfficeEndpoints();
                     u.UseWebsiteEndpoints();
                 });
+
+            // must be called before app.UseUmbraco
+            if (env.IsDevelopment())
+            {
+                // To test to run Umbraco, comment the line below
+                app.UseViteDevMiddleware();
+            }
         }
     }
 }
